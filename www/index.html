@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!-- CSP support mode (required for Windows Universal apps): https://docs.angularjs.org/api/ng/directive/ngCsp -->
+<html lang="en" ng-app="app" ng-csp>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+
+        <!-- JS dependencies (order matters!) -->
+        <script src="scripts/platformOverrides.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/onsen/js/onsenui.js"></script>
+
+        <!-- CSS dependencies -->
+        <link rel="stylesheet" href="lib/onsen/css/onsenui.css" />
+        <link rel="stylesheet" href="lib/onsen/css/onsen-css-components-blue-basic-theme.css" />
+        <!-- CSP support mode (required for Windows Universal apps) -->
+        <link rel="stylesheet" href="lib/angular/angular-csp.css" />
+        <!-- --------------- App init --------------- -->
+        <title>Onsen UI Tab Bar</title>
+
+        <script>
+            angular.module('app', ['onsen']);
+
+            angular.module('app').controller('AppController', function($scope) {
+                $scope.doSomething = function() {
+                    ons.notification.alert({message: 'tapped'});
+                };
+            });
+        </script>
+
+        <style>
+            .tab {
+                line-height: 1;
+            }
+
+            .tab-icon {
+                font-size: 24px;
+                padding: 0;
+                margin: 0;
+                vertical-align: top;
+                line-height: 28px;
+            }
+
+            .tab-label {
+                line-height: 11px;
+                vertical-align: top;
+                font-size: 11px;
+            }
+
+            .profile-wrapper {
+                padding: 16px 10px 0 10px;
+            }
+
+            .profile-image {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                -webkit-border-radius: 100%;
+                background-color: #ccc;
+            }
+
+            .profile-name {
+                font-size: 18px;
+                padding: 4px 0 2px 0;
+            }
+
+            .profile-email {
+                font-size: 15px;
+                opacity: 0.4;
+            }
+
+            .switch--list-item {
+                margin-right: 0px;
+            }
+
+            .settings-header {
+                font-weight: 500;
+                font-size: 14px;
+                opacity: 0.4;
+                padding: 10px 0 0px 10px;
+                margin-bottom: -4px;
+            }
+
+            .settings-list {
+                margin-top: 10px;
+            }
+
+            .item {
+                padding: 10px;
+                line-height: 1;
+            }
+
+            .item-thum {
+                background-color: #ccc;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                -webkit-border-radius: 100%;
+            }
+
+            .item-title {
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+            .item-desc {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.3;
+                margin: 4px 0 0 0;
+                padding: 0 30px 0 0;
+            }
+
+            .item-label {
+                font-size: 12px;
+                color: #999;
+                float: right;
+            }
+
+            .form-row {
+                margin: 4px;
+            }
+
+            .width-full {
+                width: 100%;
+            }
+
+            .width-half {
+                width: 48%;
+            }
+
+            .lucent {
+                opacity: 0.4;
+            }
+
+            .note {
+                margin: 12px 8px;
+                font-size: 13px;
+            }
+
+            .vspc {
+                margin-top: 20px;
+            }
+
+            .formarea {
+                width: 90%;
+                margin: 50px auto 0px auto;
+            }
+
+            input[type=text],
+            input[type=password] {
+                height: 40px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .login-form {
+                text-align: center;
+                width: 80%;
+                margin: 60px auto 0;
+            }
+
+            input[type=email], input[type=password] {
+                display: block;
+                width: 100%;
+                margin: 0 auto;
+                outline: none;
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+
+            .login-button {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .forgot-password {
+                display: block;
+                margin: 8px auto 0 auto;
+                font-size: 14px;
+            }
+
+        </style>
+
+    </head>
+
+    <body ng-controller="AppController">
+        <!-- Cordova reference -->
+        <script src="cordova.js"></script>
+        <script src="scripts/index.js"></script>
+
+        <!-- -->
+
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Log In</div>
+            <div class="right"><ons-toolbar-button>Close</ons-toolbar-button></div>
+        </ons-toolbar>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <center><img width="50%" src="img/logo.png"></center>
+
+        <div class="login-form">
+            <input type="email" name="mobile" class="text-input--underbar" placeholder="Mobile number with country code" value="">
+            <input type="password" name="password" class="text-input--underbar" placeholder="Password or Code" value="">
+            <br><br>
+            <ons-button modifier="large" class="login-button" id="login">Log In</ons-button>
+            <br><br>
+            <ons-button modifier="quiet" class="forgot-password" onclick="">Forgot password?</ons-button>
+        </div>
+
+    </ons-page>
+    <script src="js/jquery-1.11.3.min.js"></script>   
+    <script> $('#login').click(function() {
+                if ($('input[name="mobile"]').val()=='')
+                {
+                    ons.notification.alert({message: 'Please enter valid mobile number!'});
+                    return false;
+                }
+                
+                if ($('input[name="password"]').val()=='')
+                {
+                    ons.notification.alert({message: 'Please enter password'});
+                    return false;
+                }
+
+            });</script>
+</body> 
+</html>
